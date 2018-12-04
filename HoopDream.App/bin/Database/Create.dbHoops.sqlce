@@ -1,0 +1,178 @@
+CREATE TABLE "Positions" (
+"Name" nvarchar(255) ,
+"PositionID" int IDENTITY(1,1) NOT NULL ,
+"ShortName" nvarchar(255) )
+GO
+CREATE TABLE "Teams" (
+"Name" nvarchar(255) ,
+"ShortName" nvarchar(255) ,
+"TeamID" int IDENTITY(1,1) NOT NULL )
+GO
+CREATE TABLE "Items" (
+"ItemID" int IDENTITY(1,1) NOT NULL ,
+"Name" nvarchar(255) ,
+"ShortName" nvarchar(255) )
+GO
+CREATE TABLE "Players" (
+"IsPicked" bit DEFAULT 'No' ,
+"Name" nvarchar(255) ,
+"PlayerID" int IDENTITY(1,1) NOT NULL )
+GO
+CREATE TABLE "Rosters" (
+"Name" nvarchar(255) ,
+"PlayerID" int DEFAULT '0' ,
+"PositionID" int DEFAULT '0' ,
+"RosterID" int IDENTITY(1,1) NOT NULL )
+GO
+CREATE TABLE "Reports" (
+"ItemID" int DEFAULT '0' ,
+"Name" nvarchar(255) ,
+"PlayerID" int DEFAULT '0' ,
+"ReportID" int IDENTITY(1,1) NOT NULL ,
+"TeamID" int DEFAULT '0' ,
+"Value" numeric(18,0) DEFAULT '0' )
+GO
+ALTER TABLE "Positions" ADD CONSTRAINT "PK_PositionID_00001067901824" PRIMARY KEY ("PositionID")
+GO
+ALTER TABLE "Teams" ADD CONSTRAINT "PK_TeamID_0000889962304" PRIMARY KEY ("TeamID")
+GO
+ALTER TABLE "Items" ADD CONSTRAINT "PK_ItemID_00001994107520" PRIMARY KEY ("ItemID")
+GO
+ALTER TABLE "Players" ADD CONSTRAINT "PK_PlayerID_0000695329984" PRIMARY KEY ("PlayerID")
+GO
+ALTER TABLE "Rosters" ADD CONSTRAINT "PK_RosterID_0000296697568" PRIMARY KEY ("RosterID")
+GO
+ALTER TABLE "Reports" ADD CONSTRAINT "PK_ReportID_00002062921472" PRIMARY KEY ("ReportID")
+GO
+CREATE INDEX "PlayerID" ON "Rosters" ("PlayerID" )
+GO
+CREATE INDEX "PositionID" ON "Rosters" ("PositionID" )
+GO
+CREATE INDEX "ItemID" ON "Reports" ("ItemID" )
+GO
+CREATE INDEX "PlayerID" ON "Reports" ("PlayerID" )
+GO
+CREATE INDEX "TeamID" ON "Reports" ("TeamID" )
+GO
+ALTER TABLE "Rosters" ADD CONSTRAINT "Rosters_PlayerID_Players_PlayerID_h" FOREIGN KEY ("PlayerID") REFERENCES "Players" ("PlayerID") ON UPDATE NO ACTION ON DELETE NO ACTION
+GO
+ALTER TABLE "Rosters" ADD CONSTRAINT "Rosters_PositionID_Positions_PositionID_h" FOREIGN KEY ("PositionID") REFERENCES "Positions" ("PositionID") ON UPDATE NO ACTION ON DELETE NO ACTION
+GO
+ALTER TABLE "Reports" ADD CONSTRAINT "Reports_ItemID_Items_ItemID_h" FOREIGN KEY ("ItemID") REFERENCES "Items" ("ItemID") ON UPDATE NO ACTION ON DELETE NO ACTION
+GO
+ALTER TABLE "Reports" ADD CONSTRAINT "Reports_PlayerID_Players_PlayerID_h" FOREIGN KEY ("PlayerID") REFERENCES "Players" ("PlayerID") ON UPDATE NO ACTION ON DELETE NO ACTION
+GO
+ALTER TABLE "Reports" ADD CONSTRAINT "Reports_TeamID_Teams_TeamID_h" FOREIGN KEY ("TeamID") REFERENCES "Teams" ("TeamID") ON UPDATE NO ACTION ON DELETE NO ACTION
+GO
+INSERT INTO [Positions] ( Name,ShortName) VALUES ( 'Point Guard', 'PG' )
+GO
+INSERT INTO [Positions] ( Name,ShortName) VALUES ( 'Shooting Guard', 'SG' )
+GO
+INSERT INTO [Positions] ( Name,ShortName) VALUES ( 'Small Forward', 'SF' )
+GO
+INSERT INTO [Positions] ( Name,ShortName) VALUES ( 'Power Forward', 'PF' )
+GO
+INSERT INTO [Positions] ( Name,ShortName) VALUES ( 'Center', 'C' )
+GO
+INSERT INTO [Teams] ( Name,ShortName) VALUES ( 'Atlanta Hawks', 'ATL' )
+GO
+INSERT INTO [Teams] ( Name,ShortName) VALUES ( 'Boston Celtics', 'BOS' )
+GO
+INSERT INTO [Teams] ( Name,ShortName) VALUES ( 'Brooklyn Nets', 'BKN' )
+GO
+INSERT INTO [Teams] ( Name,ShortName) VALUES ( 'Charlotte Hornets', 'CHA' )
+GO
+INSERT INTO [Teams] ( Name,ShortName) VALUES ( 'Chicago Bulls', 'CHI' )
+GO
+INSERT INTO [Teams] ( Name,ShortName) VALUES ( 'Cleveland Cavaliers', 'CLE' )
+GO
+INSERT INTO [Teams] ( Name,ShortName) VALUES ( 'Dallas Mavericks', 'DAL' )
+GO
+INSERT INTO [Teams] ( Name,ShortName) VALUES ( 'Denver Nuggets', 'DEN' )
+GO
+INSERT INTO [Teams] ( Name,ShortName) VALUES ( 'Detroit Pistons', 'DET' )
+GO
+INSERT INTO [Teams] ( Name,ShortName) VALUES ( 'Golden State Warriors', 'GSW' )
+GO
+INSERT INTO [Teams] ( Name,ShortName) VALUES ( 'Houston Rockets', 'HOU' )
+GO
+INSERT INTO [Teams] ( Name,ShortName) VALUES ( 'Indiana Pacers', 'IND' )
+GO
+INSERT INTO [Teams] ( Name,ShortName) VALUES ( 'Los Angeles Clippers', 'LAC' )
+GO
+INSERT INTO [Teams] ( Name,ShortName) VALUES ( 'Los Angeles Lakers', 'LAL' )
+GO
+INSERT INTO [Teams] ( Name,ShortName) VALUES ( 'Memphis Grizzlies', 'MEM' )
+GO
+INSERT INTO [Teams] ( Name,ShortName) VALUES ( 'Miami Heat', 'MIA' )
+GO
+INSERT INTO [Teams] ( Name,ShortName) VALUES ( 'Milwaukee Bucks', 'MIL' )
+GO
+INSERT INTO [Teams] ( Name,ShortName) VALUES ( 'Minnesota Timberwolves', 'MIN' )
+GO
+INSERT INTO [Teams] ( Name,ShortName) VALUES ( 'New Orleans Pelicans', 'NOP' )
+GO
+INSERT INTO [Teams] ( Name,ShortName) VALUES ( 'New York Knicks', 'NYK' )
+GO
+INSERT INTO [Teams] ( Name,ShortName) VALUES ( 'Oklahoma City Thunder', 'OKC' )
+GO
+INSERT INTO [Teams] ( Name,ShortName) VALUES ( 'Orlando Magic', 'ORL' )
+GO
+INSERT INTO [Teams] ( Name,ShortName) VALUES ( 'Philadelphia 76ers', 'PHI' )
+GO
+INSERT INTO [Teams] ( Name,ShortName) VALUES ( 'Phoenix Suns', 'PHX' )
+GO
+INSERT INTO [Teams] ( Name,ShortName) VALUES ( 'Portland Trailblazers', 'POR' )
+GO
+INSERT INTO [Teams] ( Name,ShortName) VALUES ( 'Sacramento Kings', 'SAC' )
+GO
+INSERT INTO [Teams] ( Name,ShortName) VALUES ( 'San Antonio Spurs', 'SAS' )
+GO
+INSERT INTO [Teams] ( Name,ShortName) VALUES ( 'Toronto Raptors', 'TOR' )
+GO
+INSERT INTO [Teams] ( Name,ShortName) VALUES ( 'Utah Jazz', 'UTA' )
+GO
+INSERT INTO [Teams] ( Name,ShortName) VALUES ( 'Washington Wizards', 'WAS' )
+GO
+INSERT INTO [Items] ( Name,ShortName) VALUES ( 'Minutes', 'MIN' )
+GO
+INSERT INTO [Items] ( Name,ShortName) VALUES ( 'Field Goals Attempted', 'FGA' )
+GO
+INSERT INTO [Items] ( Name,ShortName) VALUES ( 'Field Goals Made', 'FGM' )
+GO
+INSERT INTO [Items] ( Name,ShortName) VALUES ( 'Free Throws Attempted', 'FTA' )
+GO
+INSERT INTO [Items] ( Name,ShortName) VALUES ( 'Free Throws Made', 'FTM' )
+GO
+INSERT INTO [Items] ( Name,ShortName) VALUES ( 'Three Pointers Attempted', '3PA' )
+GO
+INSERT INTO [Items] ( Name,ShortName) VALUES ( 'Three Pointers Made', '3PM' )
+GO
+INSERT INTO [Items] ( Name,ShortName) VALUES ( 'Defensive Rebound', 'DRB' )
+GO
+INSERT INTO [Items] ( Name,ShortName) VALUES ( 'Assist', 'AST' )
+GO
+INSERT INTO [Items] ( Name,ShortName) VALUES ( 'Block', 'BLK' )
+GO
+INSERT INTO [Items] ( Name,ShortName) VALUES ( 'Steal', 'STL' )
+GO
+INSERT INTO [Items] ( Name,ShortName) VALUES ( 'Turnover', 'TO' )
+GO
+INSERT INTO [Items] ( Name,ShortName) VALUES ( 'Personal Foul', 'PF' )
+GO
+INSERT INTO [Items] ( Name,ShortName) VALUES ( 'Offensive Rebound', 'ORB' )
+GO
+INSERT INTO [Items] ( Name,ShortName) VALUES ( 'Games Played', 'GP' )
+GO
+INSERT INTO [Items] ( Name,ShortName) VALUES ( 'Field Goal Percentage', 'FGP' )
+GO
+INSERT INTO [Items] ( Name,ShortName) VALUES ( 'Three Point Percentage', 'TPP' )
+GO
+INSERT INTO [Items] ( Name,ShortName) VALUES ( 'Free Throw Percentage', 'FTP' )
+GO
+INSERT INTO [Items] ( Name,ShortName) VALUES ( 'Rebounds', 'R' )
+GO
+INSERT INTO [Items] ( Name,ShortName) VALUES ( 'Points', 'P' )
+GO
+INSERT INTO [Items] ( Name,ShortName) VALUES ( 'Efficiency', 'E' )
+GO
