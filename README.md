@@ -5,8 +5,8 @@ A brief article on how to utilize NBA Stats API in a WinForm application
 Got involved with this project because I play ESPN/Yahoo Fantasy Sports. This tiny little application allows me to use math to calculate better Fantasy Pre-Draft order, roster lineup, and player scouting.
 
 # Technology Used
-Microsoft SQL Server CE
-Newtonsoft.Json
+- Microsoft SQL Server CE
+- Newtonsoft.Json
  
 # Background
 The first thing you should know about this project is that there are multiple documents available for the Python client of NBA statistics located at stats.nba.com. If you want to know more about work you check those out. Second, this work is solely dedicated to retrieve, store, view NBA data. There is no attempt here to provide for updating or editing this data to build your team.
